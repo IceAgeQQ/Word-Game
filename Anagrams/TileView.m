@@ -8,7 +8,9 @@
 
 #import "TileView.h"
 #import "config.h"
-@implementation TileView
+@implementation TileView{
+    int _xOffset, _yOffset;
+}
 
 - (id)initWithFrame:(CGRect)frame{
     NSAssert(NO, @"Use initWithLetter:andSideLength instead");
@@ -39,6 +41,9 @@
         
         self.isMatched = NO;
         _letter = letter;
+        
+        //enable user interaction
+        self.userInteractionEnabled = YES;
     }
     
     return self;
@@ -56,7 +61,39 @@
     int yOffset = (arc4random() % 10) - 10;
     self.center = CGPointMake(self.center.x, self.center.y + yOffset);
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    CGPoint pt = [[touches anyObject] locationInView:self.superview];
+    _xOffset = pt.x - self.center.x;
+    _yOffset = pt.y - self.center.y;
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    CGPoint pt = [[touches anyObject]locationInView:self.superview];
+    self.center = CGPointMake(pt.x - _xOffset, pt.y - _yOffset);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self touchesMoved:touches withEvent:event];
+    if (self.dragDelegate) {
+        [self.dragDelegate tileView:self didDragToPoint:self.center];
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

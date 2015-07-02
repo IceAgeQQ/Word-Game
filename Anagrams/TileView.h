@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TileView;
+@protocol TileDraDelegateProtocol <NSObject>
+- (void)tileView:(TileView *)tileView didDragToPoint:(CGPoint)pt;
+@end
 
 @interface TileView : UIImageView
+@property (weak, nonatomic)id<TileDraDelegateProtocol> dragDelegate;
 @property (strong, nonatomic, readonly)NSString *letter;
 @property (assign, nonatomic) BOOL isMatched;
 
