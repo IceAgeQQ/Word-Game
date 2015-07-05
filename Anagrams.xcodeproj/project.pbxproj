@@ -38,9 +38,13 @@
 		9CCA410516CFD9F500B16E42 /* slot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410116CFD9F500B16E42 /* slot@2x.png */; };
 		9CCA410D16CFDD8100B16E42 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410B16CFDD8100B16E42 /* tile.png */; };
 		9CCA410E16CFDD8100B16E42 /* tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410C16CFDD8100B16E42 /* tile@2x.png */; };
+		BC4CCFAD1B473E7300E54D07 /* StopwatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CCFAC1B473E7300E54D07 /* StopwatchView.m */; };
+		BC4CCFB01B47410900E54D07 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CCFAF1B47410900E54D07 /* HUDView.m */; };
 		BC64AEEF1B43397F007DC747 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64AEEE1B43397F007DC747 /* Level.m */; };
 		BC64AEF21B435131007DC747 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64AEF11B435131007DC747 /* GameController.m */; };
 		BC64AEF51B435474007DC747 /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64AEF41B435474007DC747 /* TileView.m */; };
+		BC6BDF0D1B49E70D00D8976F /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6BDF0C1B49E70D00D8976F /* GameData.m */; };
+		BC6BDF101B49ED6800D8976F /* CounterLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6BDF0F1B49ED6800D8976F /* CounterLabelView.m */; };
 		BCEE94DD1B43630700DDE1BD /* TargetView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEE94DC1B43630700DDE1BD /* TargetView.m */; };
 /* End PBXBuildFile section */
 
@@ -83,12 +87,20 @@
 		9CCA410A16CFDAE000B16E42 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		9CCA410B16CFDD8100B16E42 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		9CCA410C16CFDD8100B16E42 /* tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile@2x.png"; sourceTree = "<group>"; };
+		BC4CCFAB1B473E7300E54D07 /* StopwatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopwatchView.h; sourceTree = "<group>"; };
+		BC4CCFAC1B473E7300E54D07 /* StopwatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopwatchView.m; sourceTree = "<group>"; };
+		BC4CCFAE1B47410900E54D07 /* HUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDView.h; sourceTree = "<group>"; };
+		BC4CCFAF1B47410900E54D07 /* HUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDView.m; sourceTree = "<group>"; };
 		BC64AEED1B43397F007DC747 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		BC64AEEE1B43397F007DC747 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		BC64AEF01B435131007DC747 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		BC64AEF11B435131007DC747 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		BC64AEF31B435474007DC747 /* TileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileView.h; sourceTree = "<group>"; };
 		BC64AEF41B435474007DC747 /* TileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileView.m; sourceTree = "<group>"; };
+		BC6BDF0B1B49E70D00D8976F /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		BC6BDF0C1B49E70D00D8976F /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		BC6BDF0E1B49ED6800D8976F /* CounterLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CounterLabelView.h; sourceTree = "<group>"; };
+		BC6BDF0F1B49ED6800D8976F /* CounterLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CounterLabelView.m; sourceTree = "<group>"; };
 		BCEE94DB1B43630700DDE1BD /* TargetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetView.h; sourceTree = "<group>"; };
 		BCEE94DC1B43630700DDE1BD /* TargetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +189,12 @@
 				BC64AEF41B435474007DC747 /* TileView.m */,
 				BCEE94DB1B43630700DDE1BD /* TargetView.h */,
 				BCEE94DC1B43630700DDE1BD /* TargetView.m */,
+				BC4CCFAB1B473E7300E54D07 /* StopwatchView.h */,
+				BC4CCFAC1B473E7300E54D07 /* StopwatchView.m */,
+				BC4CCFAE1B47410900E54D07 /* HUDView.h */,
+				BC4CCFAF1B47410900E54D07 /* HUDView.m */,
+				BC6BDF0E1B49ED6800D8976F /* CounterLabelView.h */,
+				BC6BDF0F1B49ED6800D8976F /* CounterLabelView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -186,6 +204,8 @@
 			children = (
 				BC64AEED1B43397F007DC747 /* Level.h */,
 				BC64AEEE1B43397F007DC747 /* Level.m */,
+				BC6BDF0B1B49E70D00D8976F /* GameData.h */,
+				BC6BDF0C1B49E70D00D8976F /* GameData.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -358,10 +378,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CCA40AD16CFD85A00B16E42 /* main.m in Sources */,
+				BC6BDF0D1B49E70D00D8976F /* GameData.m in Sources */,
+				BC6BDF101B49ED6800D8976F /* CounterLabelView.m in Sources */,
 				9CCA40B116CFD85A00B16E42 /* AppDelegate.m in Sources */,
+				BC4CCFAD1B473E7300E54D07 /* StopwatchView.m in Sources */,
 				BC64AEF51B435474007DC747 /* TileView.m in Sources */,
 				BC64AEEF1B43397F007DC747 /* Level.m in Sources */,
 				BC64AEF21B435131007DC747 /* GameController.m in Sources */,
+				BC4CCFB01B47410900E54D07 /* HUDView.m in Sources */,
 				9CCA40BD16CFD85A00B16E42 /* ViewController.m in Sources */,
 				BCEE94DD1B43630700DDE1BD /* TargetView.m in Sources */,
 			);

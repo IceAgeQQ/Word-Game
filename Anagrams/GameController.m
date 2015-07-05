@@ -12,9 +12,20 @@
 #import "TargetView.h"
 
 
+
 @implementation GameController{
     NSMutableArray *_tiles;
     NSMutableArray *_targets;
+    int _secondsLeft;
+    NSTimer *_timer;
+}
+
+-(instancetype)init{
+    self = [super init];
+    if (self != nil) {
+        self.data = [[GameData alloc] init];
+    }
+    return self;
 }
 
 - (void)dealRandomAnagram {
@@ -66,7 +77,7 @@
         //3
         if (![letter isEqualToString:@" "]) {
             TileView* tile = [[TileView alloc] initWithLetter:letter andSideLength:tileSide];
-            tile.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +150 , kScreenHeight/2);
+            tile.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +50 , kScreenHeight/2);
             [tile randomize];
             tile.dragDelegate = self;
             
@@ -75,6 +86,8 @@
             [_tiles addObject: tile];
         }
     }
+    //start the timer
+    [self startStopwatch];
 }
 
 //a tile was dragged, check if matches a target
@@ -99,6 +112,9 @@
             [self placeTile:tileView atTarget:targetView];
             
             //more stuff to do on success here
+            //give points
+            self.data.points += self.level.pointsPerTile;
+            [self.hud.gamePoints countTo:self.data.points withDuration:1.5];
             
             [self checkForSuccess];
         } else {
@@ -117,6 +133,8 @@
                              } completion:nil];
             
         }
+        self.data.points -= self.level.pointsPerTile/2;
+        [self.hud.gamePoints countTo:self.data.points withDuration:.75];
     }
 }
 
@@ -149,6 +167,30 @@
         }
     }
      NSLog(@"Game Over!");
+    [self stopStopwatch];
+}
+
+- (void)startStopwatch{
+    //initialize the timer HUD
+    _secondsLeft = self.level.timeToSolve;
+    [self.hud.stopwatch setSeconds:_secondsLeft];
+    
+    //schedule a new timer
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+}
+
+- (void)stopStopwatch{
+    [_timer invalidate];
+    _timer = nil;
+}
+
+- (void)tick:(NSTimer *)timer{
+    _secondsLeft --;
+    [self.hud.stopwatch setSeconds:_secondsLeft];
+    
+    if (_secondsLeft == 0) {
+        [self stopStopwatch];
+    }
 }
 @end
 

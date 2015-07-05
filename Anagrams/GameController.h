@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Level.h"
 #import "TileView.h"
+#import "HUDView.h"
+#import "GameData.h"
 
 @interface GameController : NSObject<TileDraDelegateProtocol>
 @property (weak, nonatomic)UIView *gameView;
 @property (strong , nonatomic) Level *level;
+@property (weak, nonatomic) HUDView *hud;
+@property (strong, nonatomic) GameData *data;
 
 - (void)dealRandomAnagram;
 @end
