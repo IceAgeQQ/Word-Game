@@ -8,8 +8,10 @@
 
 #import "TileView.h"
 #import "config.h"
+#import <QuartzCore/QuartzCore.h>
 @implementation TileView{
     int _xOffset, _yOffset;
+    CGAffineTransform _tempTransform;
 }
 
 - (id)initWithFrame:(CGRect)frame{
@@ -44,6 +46,17 @@
         
         //enable user interaction
         self.userInteractionEnabled = YES;
+        
+        //create the tile shadow
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = 0;
+        self.layer.shadowOffset = CGSizeMake(10.0f, 10.0f);
+        self.layer.shadowRadius = 15.0f;
+        self.layer.masksToBounds = NO;
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
+        self.layer.shadowPath = path.CGPath;
+        
     }
     
     return self;
@@ -66,6 +79,14 @@
     CGPoint pt = [[touches anyObject] locationInView:self.superview];
     _xOffset = pt.x - self.center.x;
     _yOffset = pt.y - self.center.y;
+    
+    self.layer.shadowOpacity = 0.8;
+    //save the current transform
+    _tempTransform = self.transform;
+    //enlarge the tile
+    self.transform = CGAffineTransformScale(self.transform, 1.2, 1.2);
+    
+    [self.superview bringSubviewToFront:self];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -75,9 +96,19 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [self touchesMoved:touches withEvent:event];
+    
+    self.layer.shadowOpacity = 0.0;
+    //restore the original transform
+    self.transform = _tempTransform;
+    
     if (self.dragDelegate) {
         [self.dragDelegate tileView:self didDragToPoint:self.center];
     }
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    self.transform = _tempTransform;
+    self.layer.shadowOpacity = 0.0;
 }
 @end
 

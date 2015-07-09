@@ -14,7 +14,11 @@
 #define kFontHUD [UIFont fontWithName:@"comic andy" size:62.0]
 #define kFontHUDBig [UIFont fontWithName:@"comic andy" size:120.0]
 //add more definitions here
-
+//audio defines
+#define kSoundDing @"ding.mp3"
+#define kSoundWrong @"wrong.m4a"
+#define kSoundWin @"win.mp3"
+#define kAudioEffectFiles @[kSoundDing,kSoundWrong,kSoundWin]
 
 //handy math functions
 #define rad2deg(x) x * 180 / M_PI

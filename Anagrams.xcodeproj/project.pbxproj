@@ -38,6 +38,8 @@
 		9CCA410516CFD9F500B16E42 /* slot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410116CFD9F500B16E42 /* slot@2x.png */; };
 		9CCA410D16CFDD8100B16E42 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410B16CFDD8100B16E42 /* tile.png */; };
 		9CCA410E16CFDD8100B16E42 /* tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCA410C16CFDD8100B16E42 /* tile@2x.png */; };
+		BC166F991B4DEB5C004DA821 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC166F981B4DEB5C004DA821 /* AudioController.m */; };
+		BC166F9C1B4DFAA8004DA821 /* ExplodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC166F9B1B4DFAA8004DA821 /* ExplodeView.m */; };
 		BC4CCFAD1B473E7300E54D07 /* StopwatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CCFAC1B473E7300E54D07 /* StopwatchView.m */; };
 		BC4CCFB01B47410900E54D07 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4CCFAF1B47410900E54D07 /* HUDView.m */; };
 		BC64AEEF1B43397F007DC747 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = BC64AEEE1B43397F007DC747 /* Level.m */; };
@@ -87,6 +89,10 @@
 		9CCA410A16CFDAE000B16E42 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		9CCA410B16CFDD8100B16E42 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		9CCA410C16CFDD8100B16E42 /* tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile@2x.png"; sourceTree = "<group>"; };
+		BC166F971B4DEB5C004DA821 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		BC166F981B4DEB5C004DA821 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
+		BC166F9A1B4DFAA8004DA821 /* ExplodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplodeView.h; sourceTree = "<group>"; };
+		BC166F9B1B4DFAA8004DA821 /* ExplodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplodeView.m; sourceTree = "<group>"; };
 		BC4CCFAB1B473E7300E54D07 /* StopwatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopwatchView.h; sourceTree = "<group>"; };
 		BC4CCFAC1B473E7300E54D07 /* StopwatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopwatchView.m; sourceTree = "<group>"; };
 		BC4CCFAE1B47410900E54D07 /* HUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDView.h; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 			children = (
 				BC64AEF01B435131007DC747 /* GameController.h */,
 				BC64AEF11B435131007DC747 /* GameController.m */,
+				BC166F971B4DEB5C004DA821 /* AudioController.h */,
+				BC166F981B4DEB5C004DA821 /* AudioController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -195,6 +203,8 @@
 				BC4CCFAF1B47410900E54D07 /* HUDView.m */,
 				BC6BDF0E1B49ED6800D8976F /* CounterLabelView.h */,
 				BC6BDF0F1B49ED6800D8976F /* CounterLabelView.m */,
+				BC166F9A1B4DFAA8004DA821 /* ExplodeView.h */,
+				BC166F9B1B4DFAA8004DA821 /* ExplodeView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -383,6 +393,8 @@
 				9CCA40B116CFD85A00B16E42 /* AppDelegate.m in Sources */,
 				BC4CCFAD1B473E7300E54D07 /* StopwatchView.m in Sources */,
 				BC64AEF51B435474007DC747 /* TileView.m in Sources */,
+				BC166F9C1B4DFAA8004DA821 /* ExplodeView.m in Sources */,
+				BC166F991B4DEB5C004DA821 /* AudioController.m in Sources */,
 				BC64AEEF1B43397F007DC747 /* Level.m in Sources */,
 				BC64AEF21B435131007DC747 /* GameController.m in Sources */,
 				BC4CCFB01B47410900E54D07 /* HUDView.m in Sources */,

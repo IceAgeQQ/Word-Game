@@ -10,6 +10,7 @@
 #import "config.h"
 #import "TileView.h"
 #import "TargetView.h"
+#import "ExplodeView.h"
 
 
 
@@ -24,6 +25,9 @@
     self = [super init];
     if (self != nil) {
         self.data = [[GameData alloc] init];
+        
+        self.audioController = [[AudioController alloc] init];
+        [self.audioController preloadAudioEffects:kAudioEffectFiles];
     }
     return self;
 }
@@ -60,7 +64,7 @@
         
         if (![letter isEqualToString:@" "]) {
             TargetView *target = [[TargetView alloc] initWithLetter:letter andSideLength:tileSide];
-            target.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +150, kScreenHeight/4);
+            target.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +50, kScreenHeight/4);
             
             [self.gameView addSubview:target];
             [_targets addObject: target];
@@ -112,12 +116,20 @@
             [self placeTile:tileView atTarget:targetView];
             
             //more stuff to do on success here
+            
+            //play sounds when succeed
+           // [self.audioController playEffect:kSoundDing];
             //give points
             self.data.points += self.level.pointsPerTile;
             [self.hud.gamePoints countTo:self.data.points withDuration:1.5];
             
             [self checkForSuccess];
+            // the anagram is completed!
+            [self.audioController playEffect:kSoundWin];
         } else {
+            //play sound when failure
+            [self.audioController playEffect:kSoundWrong];
+            
             //You randomize the tile to demonstrate to the player that it does not match the target.
             //visualize the mistake
             [tileView randomize];
@@ -157,6 +169,10 @@
                      completion:^(BOOL finished){
                          targetView.hidden = YES;
                      }];
+    
+    ExplodeView *explode = [[ExplodeView alloc] initWithFrame:CGRectMake(tileView.center.x, tileView.center.y,10 , 10)];
+    [tileView.superview addSubview:explode];
+    [tileView.superview sendSubviewToBack:explode];
     
 }
 
