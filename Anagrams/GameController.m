@@ -11,7 +11,7 @@
 #import "TileView.h"
 #import "TargetView.h"
 #import "ExplodeView.h"
-
+#import "starDustView.h"
 
 
 @implementation GameController{
@@ -64,7 +64,7 @@
         
         if (![letter isEqualToString:@" "]) {
             TargetView *target = [[TargetView alloc] initWithLetter:letter andSideLength:tileSide];
-            target.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +50, kScreenHeight/4);
+            target.center = CGPointMake(xOffset + i*(tileSide + kTileMargin), kScreenHeight/4);
             
             [self.gameView addSubview:target];
             [_targets addObject: target];
@@ -81,7 +81,7 @@
         //3
         if (![letter isEqualToString:@" "]) {
             TileView* tile = [[TileView alloc] initWithLetter:letter andSideLength:tileSide];
-            tile.center = CGPointMake(xOffset + i*(tileSide + kTileMargin) +50 , kScreenHeight/2);
+            tile.center = CGPointMake(xOffset + i*(tileSide + kTileMargin)  , kScreenHeight/2);
             [tile randomize];
             tile.dragDelegate = self;
             
@@ -92,6 +92,8 @@
     }
     //start the timer
     [self startStopwatch];
+    //This enables the hint button when a new anagram is displayed.
+    self.hud.btnHelp.enabled = YES;
 }
 
 //a tile was dragged, check if matches a target
@@ -124,6 +126,23 @@
             [self.hud.gamePoints countTo:self.data.points withDuration:1.5];
             
             [self checkForSuccess];
+            //win animation
+            TargetView *firstTarget = _targets[0];
+            int startX = 0;
+            int endX = kScreenWidth + 300;
+            int startY =firstTarget.center.y;
+            
+            starDustView *stars = [[starDustView alloc] initWithFrame:CGRectMake(startX, startY, 10, 10)];
+            [self.gameView addSubview:stars];
+            [self.gameView sendSubviewToBack:stars];
+            
+            [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                stars.center =CGPointMake(endX, startY);
+            } completion:^(BOOL finished) {
+                //game finished
+                [stars removeFromSuperview];
+            }];
+            
             // the anagram is completed!
             [self.audioController playEffect:kSoundWin];
         } else {
@@ -183,6 +202,8 @@
         }
     }
      NSLog(@"Game Over!");
+    //disables the hint button at the end of the game, but before any effects being to play.
+    self.hud.btnHelp.enabled = NO;
     [self stopStopwatch];
 }
 
@@ -208,6 +229,62 @@
         [self stopStopwatch];
     }
 }
+
+-(void)setHud:(HUDView *)hud{
+    _hud = hud;
+    [hud.btnHelp addTarget:self action:@selector(actionHint) forControlEvents:UIControlEventTouchUpInside];
+    // disables the hint button as soon as the HUD is setup, ensuring it starts out disabled.
+    hud.btnHelp.enabled = NO;
+}
+
+-(void)actionHint{
+    self.hud.btnHelp.enabled = NO;
+    
+    //ubtract the penalty for using a hint
+    self.data.points -= self.level.pointsPerTile/2;
+    [self.hud.gamePoints countTo:self.data.points withDuration:1.5];
+    
+    //3 find the first target, not matched yet
+    //You loop through the targets and find the first non-matched one and store it in target
+    TargetView *target = nil;
+    for(TargetView *t in _targets){
+        if (t.isMatched == NO) {
+            target = t;
+            break;
+        }
+    }
+    
+    //4 find the first tile, matching the target
+    //You do the same looping over the tiles, and get the first tile matching the letter on the target.
+    TileView *tile = nil;
+    for(TileView *t in _tiles){
+        if (t.isMatched == NO && [t.letter isEqualToString:target.letter]) {
+            tile =t;
+            break;
+        }
+    }
+    
+    //5
+    // don't want the tile sliding under other tiles
+    [self.gameView bringSubviewToFront:tile];
+    
+    //6
+    //show the animation to the user
+    [UIView animateWithDuration:1.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         tile.center = target.center;
+                     } completion:^(BOOL finished) {
+                         //7 adjust view on spot
+                         [self placeTile:tile atTarget:target];
+                         
+                         //8 re-enable the button
+                         self.hud.btnHelp.enabled = YES;
+                         
+                         //9 check for finished game
+                         [self checkForSuccess];                     
+                     }];}
 @end
 
 
