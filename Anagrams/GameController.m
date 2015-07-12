@@ -126,25 +126,11 @@
             [self.hud.gamePoints countTo:self.data.points withDuration:1.5];
             
             [self checkForSuccess];
-            //win animation
-            TargetView *firstTarget = _targets[0];
-            int startX = 0;
-            int endX = kScreenWidth + 300;
-            int startY =firstTarget.center.y;
-            
-            starDustView *stars = [[starDustView alloc] initWithFrame:CGRectMake(startX, startY, 10, 10)];
-            [self.gameView addSubview:stars];
-            [self.gameView sendSubviewToBack:stars];
-            
-            [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                stars.center =CGPointMake(endX, startY);
-            } completion:^(BOOL finished) {
-                //game finished
-                [stars removeFromSuperview];
-            }];
             
             // the anagram is completed!
             [self.audioController playEffect:kSoundWin];
+            
+            
         } else {
             //play sound when failure
             [self.audioController playEffect:kSoundWrong];
@@ -205,6 +191,27 @@
     //disables the hint button at the end of the game, but before any effects being to play.
     self.hud.btnHelp.enabled = NO;
     [self stopStopwatch];
+    
+    //win animation
+    TargetView *firstTarget = _targets[0];
+    int startX = 0;
+    int endX = kScreenWidth + 300;
+    int startY =firstTarget.center.y;
+    
+    starDustView *stars = [[starDustView alloc] initWithFrame:CGRectMake(startX, startY, 10, 10)];
+    [self.gameView addSubview:stars];
+    [self.gameView sendSubviewToBack:stars];
+    
+    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        stars.center =CGPointMake(endX, startY);
+    } completion:^(BOOL finished) {
+        //game finished
+        [stars removeFromSuperview];
+        //when animation is finished,show menu
+        [self clearBoard];
+        self.onAnagramSolved();
+    }];
+
 }
 
 - (void)startStopwatch{
@@ -285,6 +292,16 @@
                          //9 check for finished game
                          [self checkForSuccess];                     
                      }];}
+
+//clear the tiles and targets
+- (void)clearBoard{
+    [_tiles removeAllObjects];
+    [_targets removeAllObjects];
+    
+    for(UIView *view in self.gameView.subviews){
+        [view removeFromSuperview];
+    }
+}
 @end
 
 
